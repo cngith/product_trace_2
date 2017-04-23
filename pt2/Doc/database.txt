@@ -1,0 +1,16 @@
+开发使用数据库:`product_trace_dev`
+生产使用数据库:`product_trace_x`,(x为数据库版本)
+数据库并非必须如上命名,只是本工程惯用规则.
+
+数据库创建,使用数据库脚本.考虑到维护方便,只保留一个正式脚本(每次脚本更新后,备份一个上传至云盘)
+空数据库脚本:product_trace_empty.sql
+开发期和生产期数据库通过修改脚本中最开始的数据库名来区分.
+具体使用注释方式,以下例子将生产期数据库脚本注释掉,则产生的是开发期数据库(详情参看脚本文件:product_trace_empty.sql)
+-- -----------------------------------
+-- 开发期数据库
+CREATE DATABASE IF NOT EXISTS `product_trace_dev` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `product_trace_dev`;
+-- 生产期数据库
+-- CREATE DATABASE IF NOT EXISTS `product_trace_2` /*!40100 DEFAULT CHARACTER SET utf8 */;
+-- USE `product_trace_2`;
+-- -----------------------------------

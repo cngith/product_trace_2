@@ -1,0 +1,11 @@
+
+# 编译过程中出现的，我们用不着跟踪它们的版本。
+*.[oa]
+
+*.~
+*.class
+
+# Windows:
+Thumbs.db
+ehthumbs.db
+Desktop.ini
