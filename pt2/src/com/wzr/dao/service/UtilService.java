@@ -59,9 +59,9 @@ public class UtilService {
 	/**
 	 * 判断商品当前状态，返回状态,位置信息,商品信息(Json格式)
 	 * 
-	 * @return : 	"pdState"元素代表商品状态,
-	 * 				"wsId","epId"代表位置信息(包括部门.员工的Id及名称),
-	 * 				"styleCode","pdName"等代表商品信息.
+	 * @return  	"pdState"元素代表商品状态,
+	 * 				<p>"wsId","epId"代表位置信息(包括部门.员工的Id及名称),
+	 * 				<p>"styleCode","pdName"等代表商品信息.
 	 */
 	public JSONObject whereIsTheProduct(String barCode){
 		JSONObject jo = new JSONObject();
@@ -151,7 +151,7 @@ public class UtilService {
 	/**
 	 * 根据条码查出商品信息, 写入到JSONObject中
 	 * @param barCode 
-	 * @param jo : 指定的JSONObject
+	 * @param jo  指定的JSONObject
 	 */
 	public void putPdJsonByBarCode(String barCode, JSONObject jo) {
 		jo.put("barCode", barCode);
