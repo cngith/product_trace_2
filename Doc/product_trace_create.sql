@@ -10,23 +10,23 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
--- CentOS下导入脚本命令 source /root/mywork/project/pt/product_trace_empty.sql;
+-- CentOS下导入脚本命令 source /root/mywork/project/pt/SQLScript/product_trace_create.sql;
 
--- Windows下导入脚本命令 source E:/Program/source/product_trace_2/pt2_SQL/product_trace_empty.sql;
+-- Windows下导入脚本命令 source E:/Program/source/product_trace_2/pt2_SQL/product_trace_create.sql;
 -- 开发期数据库
 
 -- PRINT "删除开发期数据库 product_trace_2_dev";
- DROP DATABASE IF EXISTS `product_trace_2_dev`; 
+-- DROP DATABASE IF EXISTS `product_trace_2_dev`; 
 -- PRINT "新建开发期数据库 product_trace_2_dev";
- CREATE DATABASE IF NOT EXISTS `product_trace_2_dev` /*!40100 DEFAULT CHARACTER SET utf8 */;
- USE `product_trace_2_dev`;
+-- CREATE DATABASE IF NOT EXISTS `product_trace_2_dev` /*!40100 DEFAULT CHARACTER SET utf8 */;
+-- USE `product_trace_2_dev`;
 
 -- 生产期数据库
 -- PRINT "删除生产期数据库 product_trace_a";
--- DROP DATABASE IF EXISTS `product_trace_a`; 
+ DROP DATABASE IF EXISTS `product_trace_2017`; 
 -- PRINT "新建生产期数据库 product_trace_2a";
--- CREATE DATABASE IF NOT EXISTS `product_trace_a` /*!40100 DEFAULT CHARACTER SET utf8 */;
--- USE `product_trace_a`;
+ CREATE DATABASE IF NOT EXISTS `product_trace_2017` /*!40100 DEFAULT CHARACTER SET utf8 */;
+ USE `product_trace_2017`;
 
 -- 导出  表 product_trace_x.complete_detail 结构
 CREATE TABLE IF NOT EXISTS `complete_detail` (
