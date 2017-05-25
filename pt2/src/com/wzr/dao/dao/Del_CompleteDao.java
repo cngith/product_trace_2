@@ -23,7 +23,7 @@ import com.wzr.dao.entity.Complete;
 import com.wzr.dao.entity.EnumBillType;
 
 @Repository
-public class CompleteDao implements IGeneral {
+public class Del_CompleteDao implements IGeneral {
 
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

@@ -23,12 +23,14 @@
 
 商品完工
 当某商品完成所有生产过程可由"商品完工"结束生产.
- 
+当某商品"商品完工"时，数据库将进行如下操作：将此商品的所有调拨操作从调拨表移动到完工表，之后再追加一条完工记录(记录完工的日期时间等信息)，此记录的ToTime为null.
+因为只有当商品处于已接收状态时才允许完工，所以正常调拨记录的ToTime都不为null，因此在查询"商品完工"表时可以将ToTime为null作为判断完工记录的标志。
+
 商品跟踪
 可通过条码进行"商品跟踪"
 
 //******
-唐锦部署备忘
+部署备忘
 jre1.8.66
 
 mariadb-10.1.9-win32
@@ -42,8 +44,7 @@ apache-tomcat-8.0.30
 
 
 
-JSONString.java: The JSONString interface requires a toJSONString method,
-allowing an object to provide its own serialization.
+
 
 JSONStringer.java: The JSONStringer provides a convenient facility for
 building JSON strings.

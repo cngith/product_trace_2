@@ -1,6 +1,6 @@
 /**
  * 接收统计
- * 		查询并计算给定时间段内某部门确认接收的商品
+ * 		查询并计算给定时间段内某部门已完工商品的商品
  * 		起始时间<=发送时间<接收时间<=结束时间
  */
 $(document).ready(function(){
@@ -127,12 +127,12 @@ $(document).ready(function(){
 			alert("请选择合适的查询条件.") ;
 			return;
 		}else{
-			var fileName = (0 == $("#ws").val())?"":$("#ws").find("option:selected").text() + ".";
-			fileName += (0 == $("#ep").val())?"":$("#ws").find("option:selected").text();
-			fileName += "生产" + doDay + "天";
-			$("#spanFilenameSaveAs").html("客户" + $("#cusCode").val() + "订货商品状态");
-			urlGet = baseURL + "/count/seektodbydoing?wsId=" + $("#ws").val()
-			+ "&epId=" + $("#ep").val() + "&doDay=" + doDay;
+			var fileName = (0 == $("#ws").val())?"所有部门":$("#ws").find("option:selected").text() + ".";
+			fileName += (0 == $("#ep").val())?"所有员工":$("#ep").find("option:selected").text();
+			fileName += " 完工的商品";
+			$("#spanFilenameSaveAs").html(fileName);
+			urlGet = baseURL + "/count/seek-complete-product" //?wsId=" + $("#ws").val()
+			//+ "&epId=" + $("#ep").val() + "&doDay=" + doDay;
 			$.ajax({
 				type : "GET",
 				url : urlGet,

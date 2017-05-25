@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.wzr.dao.entity.CompleteDetail;
+import com.wzr.dao.entity.Employee;
 import com.wzr.dao.entity.EnumProductState;
 import com.wzr.dao.entity.Product;
 import com.wzr.dao.entity.TransferOrderDetail;
+import com.wzr.dao.entity.Workshop;
 import com.wzr.dao.service.CompleteDetailService;
 import com.wzr.dao.service.EmployeeService;
 import com.wzr.dao.service.ProductService;
@@ -48,6 +50,12 @@ public class CountController {
 	
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@RequestMapping(value = "/seek-complete-product-view", method = RequestMethod.GET)
+	public String getCpView(){
+		// 查询已完工商品
+		return "/count/seek-complete-product-view";
+	}
 	
 	@RequestMapping(value = "/seektodbydoingview", method = RequestMethod.GET)
 	public String getWfsByTodView(){
@@ -228,6 +236,76 @@ public class CountController {
 		pw.close();
 	}
 	
+	
+	/**
+	 * 查询某员工某时间段内完工的商品(当前只实现所有商品)
+	 * @param pw
+	 */
+	@RequestMapping(value = "/seek-complete-product", method = RequestMethod.GET)
+	public void seekCompleteProduct(PrintWriter pw){ // @RequestParam("wsId") int wsId, @RequestParam("epId") int epId,		@RequestParam("doDay") int doDay,
+		// 用于返回前台的JSON对象
+		JSONObject joRe = new JSONObject();
+		// 按显示顺序填入字段名
+		JSONArray jaField = jaSeekCompleteProductField();
+		joRe.put("exportField", jaField);
+		JSONArray jaPdInfo = new JSONArray();
+		List<CompleteDetail> cdList = completeDetailService.getAllLastList();
+		if(cdList != null && cdList.size() > 0){
+//			LocalDateTime paramDate = LocalDateTime.now().plusDays(-1 * doDay);
+//			List<TransferOrderDetail> todList = transferOrderDetailService.getListByDoing(wsId,epId, paramDate);
+			UtilService us = createUtilService();
+			for(CompleteDetail cd : cdList){
+				String barCode = cd.getBarCode();
+				JSONObject joPd = new JSONObject();
+				us.putPdJsonByBarCode(barCode, joPd);
+				if(null != cd.getFromWs() && 0 != cd.getFromWs()){
+					// fromWs不为空
+					Workshop ws = workshopService.getById(cd.getFromWs());
+					joPd.put("wsName", ws.getWsName());
+				}
+				else{
+					// 为空意味着出错了，应该抛异常
+					joPd.put("wsName", "");
+				}
+				if(null != cd.getFromEp() && 0 != cd.getFromEp()){
+					// fromEp不为空
+					Employee ep = employeeService.getById(cd.getFromEp());
+					joPd.put("epName", ep.getEpName());
+				}
+				else{
+					joPd.put("epName", "");
+				}
+				
+				jaPdInfo.put(joPd);
+			}
+			
+		}
+		joRe.put("exportContent", jaPdInfo);
+		pw.write(joRe.toString());
+		pw.flush();
+		pw.close();
+	}
+	
+
+	/**
+	 * 生成查询结果的字段信息用于前端取数据(作为JSON的KEY)
+	 * @return 返回字段信息(代码,名称)(有顺序)
+	 */
+	private JSONArray jaSeekCompleteProductField() {
+		JSONArray ja = new JSONArray();
+		putOneField(ja, "barCode", "条码");
+		putOneField(ja, "styleCode", "款号");
+		putOneField(ja, "pdName", "颜色");
+		putOneField(ja, "length", "长度");
+		putOneField(ja, "size", "尺码");
+		putOneField(ja, "cusCode", "类别");
+		putOneField(ja, "billNo", "单号");
+		putOneField(ja, "wsName","所在部门");
+		putOneField(ja, "epName","员工");
+//		putOneField(ja, "statusName", "商品状态");
+		return ja;
+	}
+	
 	/**
 	 * 构造一个UtilService
 	 * @return
@@ -254,6 +332,7 @@ public class CountController {
 		return ja;
 	}
 
+
 	/**
 	 * 生成查询结果的字段信息用于前端取数据(作为JSON的KEY)
 	 * @return 返回字段信息(代码,名称)(有顺序)
@@ -271,6 +350,7 @@ public class CountController {
 		return ja;
 	}
 
+	
 	/**
 	 * 将字段代码和名称加入JSONArray
 	 * @param ja JSONArray

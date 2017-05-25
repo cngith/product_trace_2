@@ -18,7 +18,8 @@
 	<a href="${baseURL }/count/countnumberproduce" >产量统计</a>&nbsp
 	<a href="${baseURL }/count/seekpdbycusview" >按客户查询商品</a>&nbsp
 	<a href="${baseURL }/count/seektodbydoingview" >查询待发送商品</a>&nbsp
-<%-- 	<a href="${baseURL }/count/countnumberaccept" >查询待发送商品</a>&nbsp --%>
+	<a href="${baseURL }/count/seek-complete-product-view" >查询已完工商品</a>&nbsp
+	<a href="${baseURL }/count/seek-product-cancel-view" >查询已取消商品</a>&nbsp
 
 </body>
 </html>

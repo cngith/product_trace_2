@@ -33,6 +33,14 @@ public class CompleteDetailService {
 	public CompleteDetail getLastByBarCode(String barCode) {
 		return completeDetailDao.getLastByBarCode(barCode);
 	}
+	
+	/**
+	 * 取所有已完工商品，每件商品取最后一条记录
+	 * @return
+	 */
+	public List<CompleteDetail> getAllLastList() {
+		return completeDetailDao.getAllLastList();
+	}
 	/**
 	 * 根据条码将此商品调拨单明细添加到完工明细表
 	 * @param barCode

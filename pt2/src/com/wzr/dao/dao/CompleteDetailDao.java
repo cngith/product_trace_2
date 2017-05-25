@@ -130,20 +130,22 @@ public class CompleteDetailDao implements IGeneral{
 	 * @return
 	 */
 	public CompleteDetail getLastByBarCode(String barCode) {
-		String sql = "SELECT cmId,cdId,fromWs,fromEp,toWs,toEp,barCode,fromTime,toTime FROM complete_detail "
+		String sql = "SELECT cdId,fromWs,fromEp,toWs,toEp,barCode,fromTime,toTime,fromUserId,toUserId FROM complete_detail "
 				+ "WHERE barCode=:barCode ORDER BY fromTime DESC LIMIT 0,1";
 		SqlParameterSource sps = new MapSqlParameterSource().addValue("barCode", barCode);
 		return this.get(sql,sps);
 	}
 
 	
-//	public List<CompleteDetail> getListByCmId(int cmId) {
-//		// 
-//		String sql = "SELECT cmId,cdId,fromWs,fromEp,toWs,toEp,barCode,fromTime,toTime FROM complete_detail "
-//				+ "WHERE cmId=:cmId";
-//		SqlParameterSource sps = new MapSqlParameterSource().addValue("cmId", cmId);
-//		return this.getList(sql,sps,null);
-//	}
+	/**
+	 * 取所有已完工商品的完工记录
+	 * @return
+	 */
+	public List<CompleteDetail> getAllLastList() {
+		String sql = "SELECT * FROM complete_detail WHERE toTime IS null";
+		CompleteDetail obj = new CompleteDetail();
+		return this.getList(sql,null,obj);
+	}
 	
 	/**
 	 * 取某条码的所有完工明细
