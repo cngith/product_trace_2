@@ -3,7 +3,7 @@
 *.[oa]
 
 *.~
-*.class
+#*.class
 
 # Windows:
 Thumbs.db
