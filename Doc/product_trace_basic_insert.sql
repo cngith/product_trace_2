@@ -8,17 +8,17 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/* */;
 
--- CentOS下导入脚本命令 source /root/mywork/project/pt/product_trace_data.sql;
+-- CentOS下导入脚本命令 source /root/mywork/project/pt/SQLScript/product_trace_basic_insert.sql;
 
--- Windows下导入脚本命令 source E:/Program/source/pt2/product_trace_user_data.sql;
+-- Windows下导入脚本命令 source E:/Program/source/pt2/product_trace_basic_insert.sql;
 -- 导入 product_trace_x 的数据
 -- USE `product_trace_2a`;
- USE `product_trace_2_dev`;
+ USE `product_trace_2017`;
 
---SELECT "添加操作员账号adm";
-INSERT INTO `user` (`userid`, `username`, `password`) VALUES	(1, 'adm', '');
+--SELECT "添加操作员账号";
+INSERT INTO `user` (`userid`, `username`, `password`) VALUES	('', 'zd', '0424');
 
 LOCK TABLES `workshop` WRITE;
 INSERT INTO `workshop` VALUES (001,'办公室'),(002,'皮料仓'),(003,'配皮房'),(004,'毛工部'),(005,'裁缝部');
