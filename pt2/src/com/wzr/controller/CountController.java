@@ -216,9 +216,10 @@ public class CountController {
 		JSONArray jaField = jaSeekProductByCusField();
 		joRe.put("exportField", jaField);
 		JSONArray jaPdInfo = new JSONArray();
-		if(doDay > 0){
+		if(doDay >= 0){
 			//"legal employee Id." + epId;
 			LocalDateTime paramDate = LocalDateTime.now().plusDays(-1 * doDay);
+			paramDate = LocalDateTime.of(paramDate.getYear(), paramDate.getMonthValue(), paramDate.getDayOfMonth(),23,59,59);
 			List<TransferOrderDetail> todList = transferOrderDetailService.getListByDoing(wsId,epId, paramDate);
 			UtilService us = createUtilService();
 			for(TransferOrderDetail tod : todList){

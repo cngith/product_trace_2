@@ -46,8 +46,6 @@ apache-tomcat-8.0.30
 
 
 
-JSONStringer.java: The JSONStringer provides a convenient facility for
-building JSON strings.
 
 JSONWriter.java: The JSONWriter provides a convenient facility for building
 JSON text through a writer.
