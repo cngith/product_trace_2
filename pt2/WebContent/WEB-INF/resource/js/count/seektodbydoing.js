@@ -8,7 +8,7 @@ $(document).ready(function(){
 		var dayAgo=$(this).children('option:selected').val();//这就是selected的值
 		var seekDate = new Date();
 		seekDate.setDate(seekDate.getDate() - dayAgo);
-		$("#seekDate").html("-- " + (seekDate.getMonth()+1) + "月" + seekDate.getDate() + "日前开始生产");//页面跳转并传参
+		$("#seekDate").html("-- (含)" + (seekDate.getMonth()+1) + "月" + seekDate.getDate() + "日前开始生产");//页面跳转并传参
 	});
 })
 
@@ -19,11 +19,11 @@ $(document).ready(function(){
 	}
 	
 	function initDoDay(){
-		for(var i=1; i<=20; ++i){
+		for(var i=0; i<=20; ++i){
 			var doDay = $("#doDay").get(0);
 			addOption(doDay, i, i);
 		}
-		$("#doDay").val(5); // 设置doDay的Value值为5的项选中
+		$("#doDay").val(0); // 设置doDay的Value值为5的项选中
 	}
 	/**
 	 * 取JSON格式的车间对象列表
@@ -157,10 +157,11 @@ $(document).ready(function(){
 		// 根据返回数据统计结果合计数
 		$("#spanResultNumber").html(exportContent.length);
 		if(0 == exportContent.length){
-			$("#DivPdInfo").css("display","none");
+			$("#divResultSpace").css("display","none");
+			//$("#divResultSpace")
 			return;
 		}
-		$("#DivPdInfo").css("display","");
+		$("#divResultSpace").css("display","");
 		$("#tDetail").html("");
 		$("#exportField").val(JSON.stringify(joRe.exportField));
 		filTable(joRe.exportField,exportContent);
