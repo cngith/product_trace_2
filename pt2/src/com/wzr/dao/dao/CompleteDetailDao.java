@@ -205,7 +205,7 @@ public class CompleteDetailDao implements IGeneral{
 	public List<CompleteDetail> getListByFromWsId(int fromWsId, LocalDateTime dateTime1, LocalDateTime dateTime2) {
 		String sql = "SELECT * FROM complete_detail "
 				+ "WHERE (fromWs=:fromWs) "
-				+ "AND ((fromTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
+				+ "AND ((toTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
 		SqlParameterSource sps = new MapSqlParameterSource().addValue("fromWs", fromWsId);
 		return this.getList(sql, sps, new CompleteDetail());
 	}
@@ -220,7 +220,7 @@ public class CompleteDetailDao implements IGeneral{
 	public List<CompleteDetail> getListByFromEpId(int fromEpId, LocalDateTime dateTime1, LocalDateTime dateTime2) {
 		String sql = "SELECT * FROM complete_detail "
 				+ "WHERE (fromEp=:fromEp) "
-		+ "AND ((fromTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
+		+ "AND ((toTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
 		SqlParameterSource sps = new MapSqlParameterSource().addValue("fromEp", fromEpId);
 		return this.getList(sql, sps, new CompleteDetail());
 	}

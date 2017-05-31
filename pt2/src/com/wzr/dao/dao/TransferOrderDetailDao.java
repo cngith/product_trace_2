@@ -327,9 +327,10 @@ public class TransferOrderDetailDao implements ITransferOrderDetailDao {
 	 * @return
 	 */
 	public List<TransferOrderDetail> getListByFromWsId(int wsId, LocalDateTime dateTime1, LocalDateTime dateTime2) {
+		// 实际上是查询下个接收部门接收商品的时间在指定的时间段内
 		String sql = "SELECT * FROM transfer_order_detail "
 				+ "WHERE (fromWs=:fromWs) "
-		+ "AND ((fromTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
+		+ "AND ((toTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
 		SqlParameterSource sps = new MapSqlParameterSource().addValue("fromWs", wsId);
 		return this.getList(sql, sps, new TransferOrderDetail());
 	}
@@ -344,7 +345,7 @@ public class TransferOrderDetailDao implements ITransferOrderDetailDao {
 	public List<TransferOrderDetail> getListByFromEpId(int epId, LocalDateTime dateTime1, LocalDateTime dateTime2) {
 		String sql = "SELECT * FROM transfer_order_detail "
 				+ "WHERE (fromEp=:fromEp) "
-				+ "AND ((fromTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
+				+ "AND ((toTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
 		SqlParameterSource sps = new MapSqlParameterSource().addValue("fromEp", epId);
 		return this.getList(sql, sps, new TransferOrderDetail());
 	}
