@@ -200,12 +200,14 @@ public class CompleteDetailDao implements IGeneral{
 	 * @param fromWsId 部门Id
 	 * @param dateTime1
 	 * @param dateTime2
-	 * @return
+	 * @return 此方法返回生产过程中的所有生产记录，包含指定部门最后一条完工时的记录
 	 */
 	public List<CompleteDetail> getListByFromWsId(int fromWsId, LocalDateTime dateTime1, LocalDateTime dateTime2) {
-		String sql = "SELECT * FROM complete_detail "
-				+ "WHERE (fromWs=:fromWs) "
-				+ "AND ((toTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "'))";
+		String sql = "(SELECT * FROM complete_detail "
+				+ "WHERE (fromWs=:fromWs)  AND toTime IS NOT NULL "
+				+ "AND ((toTime>='" + dateTime1.toString() + "') AND (toTime<='" + dateTime2.toString() + "')))"
+				+ " UNION (SELECT * FROM complete_detail WHERE (fromWs=:fromWs) AND toTime IS NULL "
+				+ " AND ((fromTime>='" + dateTime1.toString() + "') AND (fromTime<='" + dateTime2.toString() + "')))";
 		SqlParameterSource sps = new MapSqlParameterSource().addValue("fromWs", fromWsId);
 		return this.getList(sql, sps, new CompleteDetail());
 	}

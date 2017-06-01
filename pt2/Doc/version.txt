@@ -1,3 +1,7 @@
+v2.6.2
+修改CompleteDetailDao.getListByFromWsId方法，
+使其返回生产过程中的所有生产记录，包含指定部门最后一条完工时的记录
+
 v2.6.1
 修改了统计产量的SQL语句,从fromTime改为toTime
 
