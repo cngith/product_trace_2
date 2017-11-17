@@ -5,11 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>商品跟踪v2.5用户登录</title>
+<title>商品跟踪v2.6.3用户登录</title>
 </head>
 <body>
 	<sf:form modelAttribute="loginUser" method="post">
-		<div><span>商品跟踪v2.5</span></div>
+		<div><span>商品跟踪v2.6.3</span></div>
 		<table>
 		    <tr>
 		        <td colspan="2">用户登录</td>

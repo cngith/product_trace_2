@@ -12,9 +12,9 @@
 	function getPtByBarCode(){
 		var barCode = $.trim($("#barCode").val());
 		// FIXME 当前条码位数为魔数, 未来版本将在页面加载时后台传入
-		if(barCode.length != 9){
+		if(barCode.length < 9 || barCode.length > 15){
 			// 条码位数不符, 直接返回.
-			$("#infoBarCode").html("条码位数不符, 请输入9位条码");
+			$("#infoBarCode").html("条码位数不符, 请输入9-15位条码");
 			return;
 		}
 		$("#infoBarCode").html("");

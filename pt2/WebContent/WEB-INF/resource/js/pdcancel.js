@@ -42,7 +42,7 @@
 	function barCodeChange(){
 		var barCode = $.trim($("#barCode").val());
 		// FIXME 当前条码位数为魔数, 未来版本将在页面加载时后台传入
-		if(barCode.length != 9){
+		if(barCode.length < 9 || barCode.length > 15){
 			// 条码位数不符, 直接返回.
 			$("#btnAddOneRow").attr("disabled","disabled");
 			$("#spanPdStatus").html("");
@@ -136,7 +136,7 @@
 		var barCode = $("#barCode");
 		(barCode).select();
 		// FIXME 当前条码位数为魔数, 未来版本将在页面加载时后台传入
-		if(barCode.val().length != 9){
+		if(barCode.val().length < 9 || barCode.val().length > 15){
 			// 条码位数不符, 直接返回.
 			$("#spanMsg").html("条码位数不符,请输入9位条码.");
 			return false;

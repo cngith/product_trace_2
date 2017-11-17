@@ -131,10 +131,10 @@
 	function getWfadByBarCode(){
 		var barCode = document.getElementById("barCode").value;
 		// FIXME 当前条码位数为魔数, 未来版本将在页面加载时后台传入
-		if(barCode.length != 9){
+		if(barCode.length < 9 || barCode.length > 15){
 			// 条码位数不符, 直接返回.
 			var spanMsg = document.getElementById("message");
-			spanMsg.innerHTML="条码位数不符,请输入9位条码.";
+			spanMsg.innerHTML="条码位数不符,请输入9-15位条码.";
 			return;
 		}
 		// 去后台验证[条码]并返回[发送部门][发送人员]
