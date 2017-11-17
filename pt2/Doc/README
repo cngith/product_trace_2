@@ -1,3 +1,7 @@
+
+$ git remote add origin git@github.com:cngith/product_trace_2.git 
+$ git pull origin master
+
 访问系统方法
 内网任意联网电脑, 打开浏览器, 地址栏输入: 192.168.0.100/pt2/login (输入后回车)
 说明:192.168.0.100为服务器地址;pt为 Product Trace 缩写, 2为版本号
@@ -23,14 +27,12 @@
 
 商品完工
 当某商品完成所有生产过程可由"商品完工"结束生产.
-当某商品"商品完工"时，数据库将进行如下操作：将此商品的所有调拨操作从调拨表移动到完工表，之后再追加一条完工记录(记录完工的日期时间等信息)，此记录的ToTime为null.
-因为只有当商品处于已接收状态时才允许完工，所以正常调拨记录的ToTime都不为null，因此在查询"商品完工"表时可以将ToTime为null作为判断完工记录的标志。
-
+ 
 商品跟踪
 可通过条码进行"商品跟踪"
 
 //******
-部署备忘
+唐锦部署备忘
 jre1.8.66
 
 mariadb-10.1.9-win32
@@ -41,39 +43,3 @@ apache-tomcat-8.0.30
 
 
 
-
-
-
-
-
-
-JSONWriter.java: The JSONWriter provides a convenient facility for building
-JSON text through a writer.
-
-
-CDL.java: CDL provides support for converting between JSON and comma
-delimited lists.
-
-Cookie.java: Cookie provides support for converting between JSON and cookies.
-
-CookieList.java: CookieList provides support for converting between JSON and
-cookie lists.
-
-HTTP.java: HTTP provides support for converting between JSON and HTTP headers.
-
-HTTPTokener.java: HTTPTokener extends JSONTokener for parsing HTTP headers.
-
-XML.java: XML provides support for converting between JSON and XML.
-
-JSONML.java: JSONML provides support for converting between JSONML and XML.
-
-XMLTokener.java: XMLTokener extends JSONTokener for parsing XML text.
-
-Unit tests are maintained in a separate project. Contributing developers can test JSON-java pull requests with the code in this project: https://github.com/stleary/JSON-Java-unit-test
-
-Release history:
-
-20150729    Checkpoint for Maven central repository release. Contains the latest code as of 29 July, 2015. 
-
-JSON-java releases can be found by searching the Maven repository for groupId "org.json" and artifactId "json". For example: 
-https://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22org.json%22%20AND%20a%3A%22json%22
