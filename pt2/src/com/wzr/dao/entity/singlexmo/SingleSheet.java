@@ -76,7 +76,7 @@ public class SingleSheet {
                 xCell = row.getCell(colNo++);   // 单号
                 detailRow.setBillNo(xCell.getStringCellValue());
                 xCell = row.getCell(colNo++);   // 备注
-                detailRow.setRemark(xCell.getStringCellValue());
+                detailRow.setRemark((null == xCell)? "" : xCell.getStringCellValue());
                 this.detailRows.add(detailRow);    // 加入有效行列表
             }
 
